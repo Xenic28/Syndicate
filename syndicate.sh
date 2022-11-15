@@ -49,7 +49,7 @@ while getopts 'hi:' OPTION; do
   esac
 done
 echo -e "Enter a number to perform an action: "
-select opt in "Expanse (Palo Alto Networks)" "DotBot (opensiteexplorer.org)" "Netcraft" "CENSYS" "AhrefsBot" "NetSystemsResearch" "Serpstatbot" "t3versionsBot" "SemrushBot" "DataForSEO" "IonCrawl (IONOS)" "bingbot" "DuckDuckGo Favicons Bot" "Who.is Bot" "2ip bot" "PetalBot" "PHMGMT (VyprVPN)" "Tencent" "Chang Way Technologies" "DigitalOcean" "PONYNET (FranTech Solutions)" "All Spam ISPS" "Exit"; do
+select opt in "Expanse (Palo Alto Networks)" "DotBot (opensiteexplorer.org)" "Netcraft" "CENSYS" "AhrefsBot" "NetSystemsResearch" "Serpstatbot" "t3versionsBot" "SemrushBot" "DataForSEO" "IonCrawl (IONOS)" "bingbot" "DuckDuckGo Favicons Bot" "Who.is Bot" "2ip bot" "PetalBot" "PHMGMT (VyprVPN)" "Tencent" "Chang Way Technologies" "DigitalOcean" "PONYNET (FranTech Solutions)" "Flyservers" "All Spam ISPS" "Exit"; do
   case $opt in
     "Expanse (Palo Alto Networks)")
       clear
@@ -5695,6 +5695,58 @@ select opt in "Expanse (Palo Alto Networks)" "DotBot (opensiteexplorer.org)" "Ne
             iptables -D INPUT -s 50.114.60.0/24 -j DROP
             clear
             echo "Done! PONYNET (FranTech Solutions) is now Unblocked."
+            echo "Thanks for using Syndicate."
+            exit 0
+            ;;
+          "Exit")
+            exit 0
+            ;;
+          *)
+            echo "Invalid option $REPLY"
+            ;;
+       esac
+      done
+      ;;
+    "Flyservers")
+      clear
+      echo -e "Enter a Number: "
+      select optflyservers in "Block Flyservers" "Unblock Flyservers" "Exit"; do
+        case $optflyservers in
+          "Block Flyservers")
+            clear
+            echo "Blocking Flyservers this can take a while..." 
+            sleep 4
+            iptables -A INPUT -s 141.98.83.0/24 -j DROP
+            iptables -A INPUT -s 141.98.82.0/24 -j DROP
+            iptables -A INPUT -s 81.19.135.0/24 -j DROP
+            iptables -A INPUT -s 141.98.81.0/24 -j DROP
+            iptables -A INPUT -s 179.60.147.0/24 -j DROP
+            iptables -A INPUT -s 147.78.47.0/24 -j DROP
+            iptables -A INPUT -s 141.98.9.0/24 -j DROP
+            ip6tables -A INPUT -s 2a10:9100:7::/48 -j DROP
+            ip6tables -A INPUT -s 2a10:9107:f000::/36 -j DROP
+            ip6tables -A INPUT -s 2a10:9100:9::/48 -j DROP
+            clear
+            echo "Done! Flyservers is now Blocked."
+            echo "Thanks for using Syndicate."
+            exit 0
+            ;;               
+          "Unblock Flyservers")
+            clear
+            echo "Unblocking Flyservers this can take a while..."
+            sleep 4         
+            iptables -D INPUT -s 141.98.83.0/24 -j DROP
+            iptables -D INPUT -s 141.98.82.0/24 -j DROP
+            iptables -D INPUT -s 81.19.135.0/24 -j DROP
+            iptables -D INPUT -s 141.98.81.0/24 -j DROP
+            iptables -D INPUT -s 179.60.147.0/24 -j DROP
+            iptables -D INPUT -s 147.78.47.0/24 -j DROP
+            iptables -D INPUT -s 141.98.9.0/24 -j DROP
+            ip6tables -D INPUT -s 2a10:9100:7::/48 -j DROP
+            ip6tables -D INPUT -s 2a10:9107:f000::/36 -j DROP
+            ip6tables -D INPUT -s 2a10:9100:9::/48 -j DROP
+            clear
+            echo "Done! Flyservers is now Unblocked."   
             echo "Thanks for using Syndicate."
             exit 0
             ;;
