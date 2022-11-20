@@ -30,7 +30,7 @@ echo -e '   _____                 ___            __
      /____/
 '
 
-SYNDICATE_VERSION="v1"
+SYNDICATE_VERSION="v1.2"
 
 while getopts 'hi:' OPTION; do
   case "$OPTION" in
@@ -199,6 +199,9 @@ select opt in "Expanse (Palo Alto Networks)" "DotBot (opensiteexplorer.org)" "Ne
             echo "Blocking DotBot (opensiteexplorer.org) this can take a while..."
             sleep 4
             iptables -A INPUT -s 216.244.66.196 -j DROP
+            iptables -A INPUT -s 34.231.122.108 -j DROP
+            iptables -A INPUT -s 44.210.235.215 -j DROP
+            iptables -A INPUT -s 3.83.185.210 -j DROP
             clear
             echo "Done! DotBot (opensiteexplorer.org) is now Blocked."
             echo "Thanks for using Syndicate."
@@ -209,6 +212,9 @@ select opt in "Expanse (Palo Alto Networks)" "DotBot (opensiteexplorer.org)" "Ne
             echo "Unblocking DotBot (opensiteexplorer.org) this can take a while..."
             sleep 4
             iptables -D INPUT -s 216.244.66.196 -j DROP
+            iptables -D INPUT -s 34.231.122.108 -j DROP
+            iptables -D INPUT -s 44.210.235.215 -j DROP
+            iptables -D INPUT -s 3.83.185.210 -j DROP
             clear
             echo "Done! DotBot (opensiteexplorer.org) is now Unblocked."
             echo "Thanks for using Syndicate."
@@ -730,6 +736,7 @@ select opt in "Expanse (Palo Alto Networks)" "DotBot (opensiteexplorer.org)" "Ne
             iptables -A INPUT -s 157.55.39.165 -j DROP
             iptables -A INPUT -s 207.46.13.10 -j DROP
             iptables -A INPUT -s 40.77.167.41 -j DROP
+            iptables -A INPUT -s 40.77.167.9 -j DROP
             clear
             echo "Done! bingbot is now Blocked."
             echo "Thanks for using Syndicate."
@@ -743,6 +750,7 @@ select opt in "Expanse (Palo Alto Networks)" "DotBot (opensiteexplorer.org)" "Ne
             iptables -D INPUT -s 157.55.39.165 -j DROP
             iptables -D INPUT -s 207.46.13.10 -j DROP
             iptables -D INPUT -s 40.77.167.41 -j DROP
+            iptables -D INPUT -s 40.77.167.9 -j DROP
             clear
             echo "Done! bingbot is now Unblocked."
             echo "Thanks for using Syndicate."
