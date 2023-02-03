@@ -30,7 +30,7 @@ echo -e '   _____                 ___            __
      /____/
 '
 
-SYNDICATE_VERSION="v1.2.1"
+SYNDICATE_VERSION="v1.2.2"
 
 while getopts 'hi:' OPTION; do
   case "$OPTION" in
@@ -49,7 +49,7 @@ while getopts 'hi:' OPTION; do
   esac
 done
 echo -e "Enter a number to perform an action: "
-select opt in "Expanse (Palo Alto Networks)" "DotBot (opensiteexplorer.org)" "Netcraft" "CENSYS" "AhrefsBot" "NetSystemsResearch" "Serpstatbot" "t3versionsBot" "SemrushBot" "DataForSEO" "IonCrawl (IONOS)" "bingbot" "DuckDuckGo Favicons Bot" "Who.is Bot" "2ip bot" "PetalBot" "PHMGMT (VyprVPN)" "Tencent" "Chang Way Technologies" "DigitalOcean" "PONYNET (FranTech Solutions)" "Flyservers" "All Spam ISPS" "Exit"; do
+select opt in "Expanse (Palo Alto Networks)" "DotBot (opensiteexplorer.org)" "Netcraft" "CENSYS" "AhrefsBot" "NetSystemsResearch" "Serpstatbot" "t3versionsBot" "SemrushBot" "DataForSEO" "IonCrawl (IONOS)" "bingbot" "DuckDuckGo Favicons Bot" "Who.is Bot" "2ip bot" "PetalBot" "ZoominfoBot" "CCBot" "PHMGMT (VyprVPN)" "Tencent" "Chang Way Technologies" "DigitalOcean" "PONYNET (FranTech Solutions)" "Flyservers" "Private Layer INC" "All Spam ISPS" "Exit"; do
   case $opt in
     "Expanse (Palo Alto Networks)")
       clear
@@ -762,7 +762,91 @@ select opt in "Expanse (Palo Alto Networks)" "DotBot (opensiteexplorer.org)" "Ne
             ;;
        esac
       done
+      ;;  
+    "ZoominfoBot")
+      clear
+      echo -e "Enter a Number: "
+      select optzoominfobot in "Block ZoominfoBot" "Unblock ZoominfoBot" "Exit"; do
+        case $optzoominfobot in
+          "Block ZoominfoBot")
+            clear
+            echo "Blocking ZoominfoBot this can take a while..." 
+            sleep 4
+            curl -s -o zoominfobot.txt https://raw.githubusercontent.com/Xenic28/Syndicate/main/lists/zoominfobot.txt
+            for a in `cat zoominfobot.txt`; do
+            iptables -A INPUT -s $a -j DROP
+            done             
+            rm zoominfobot.txt          
+            clear
+            echo "Done! ZoominfoBot is now Blocked."
+            echo "Thanks for using Syndicate."
+            exit 0
+            ;;               
+          "Unblock ZoominfoBot")
+            clear
+            echo "Unblocking ZoominfoBot this can take a while..."
+            sleep 4         
+            curl -s -o zoominfobot.txt https://raw.githubusercontent.com/Xenic28/Syndicate/main/lists/zoominfobot.txt
+            for a in `cat zoominfobot.txt`; do
+            iptables -D INPUT -s $a -j DROP
+            done             
+            rm zoominfobot.txt
+            clear
+            echo "Done! ZoominfoBot is now Unblocked."   
+            echo "Thanks for using Syndicate."
+            exit 0
+            ;;
+          "Exit")
+            exit 0
+            ;;
+          *)
+            echo "Invalid option $REPLY"
+            ;;
+       esac
+      done
       ;;   
+    "CCBot")
+      clear
+      echo -e "Enter a Number: "
+      select optccbot in "Block CCBot" "Unblock CCBot" "Exit"; do
+        case $optccbot in
+          "Block CCBot")
+            clear
+            echo "Blocking CCBot this can take a while..."
+            sleep 4
+            curl -s -o ccbot.txt https://raw.githubusercontent.com/Xenic28/Syndicate/main/lists/ccbot.txt
+            for a in `cat ccbot.txt`; do
+            iptables -A INPUT -s $a -j DROP
+            done    
+            rm ccbot.txt 
+            clear
+            echo "Done! CCBot is now Blocked."
+            echo "Thanks for using Syndicate."
+            exit 0
+            ;;
+          "Unblock CCBot")
+            clear
+            echo "Unblocking CCBot this can take a while..."
+            sleep 4
+            curl -s -o ccbot.txt https://raw.githubusercontent.com/Xenic28/Syndicate/main/lists/ccbot.txt
+            for a in `cat ccbot.txt`; do
+            iptables -D INPUT -s $a -j DROP
+            done    
+            rm ccbot.txt 
+            clear
+            echo "Done! CCBot is now Unblocked."
+            echo "Thanks for using Syndicate."
+            exit 0
+            ;;
+          "Exit")
+            exit 0
+            ;;
+          *)
+            echo "Invalid option $REPLY"
+            ;;
+       esac
+      done
+      ;;                  
     "PHMGMT (VyprVPN)")
       clear
       echo -e "Enter a Number: "
@@ -1055,6 +1139,58 @@ select opt in "Expanse (Palo Alto Networks)" "DotBot (opensiteexplorer.org)" "Ne
        esac
       done
       ;;
+    "Private Layer INC")
+      clear
+      echo -e "Enter a Number: "
+      select optprivatelayerinc in "Block Private Layer INC" "Unblock Private Layer INC" "Exit"; do
+        case $optprivatelayerinc in
+          "Block Private Layer INC")
+            clear
+            echo "Blocking Private Layer INC this can take a while..." 
+            sleep 4
+            curl -s -o privatelayerinc.txt https://raw.githubusercontent.com/Xenic28/Syndicate/main/lists/privatelayerinc.txt
+            curl -s -o privatelayerincv6.txt https://raw.githubusercontent.com/Xenic28/Syndicate/main/lists/privatelayerincv6.txt
+            for a in `cat privatelayerinc.txt`; do
+            iptables -A INPUT -s $a -j DROP
+            done 
+            for a in `cat privatelayerincv6.txt`; do
+            ip6tables -A INPUT -s $a -j DROP
+            done             
+            rm privatelayerinc.txt
+            rm privatelayerincv6.txt           
+            clear
+            echo "Done! Private Layer INC is now Blocked."
+            echo "Thanks for using Syndicate."
+            exit 0
+            ;;               
+          "Unblock Private Layer INC")
+            clear
+            echo "Unblocking Private Layer INC this can take a while..."
+            sleep 4         
+            curl -s -o privatelayerinc.txt https://raw.githubusercontent.com/Xenic28/Syndicate/main/lists/privatelayerinc.txt
+            curl -s -o privatelayerincv6.txt https://raw.githubusercontent.com/Xenic28/Syndicate/main/lists/privatelayerincv6.txt
+            for a in `cat privatelayerinc.txt`; do
+            iptables -D INPUT -s $a -j DROP
+            done 
+            for a in `cat privatelayerincv6.txt`; do
+            ip6tables -D INPUT -s $a -j DROP
+            done             
+            rm privatelayerinc.txt
+            rm privatelayerincv6.txt
+            clear
+            echo "Done! Private Layer INC is now Unblocked."   
+            echo "Thanks for using Syndicate."
+            exit 0
+            ;;
+          "Exit")
+            exit 0
+            ;;
+          *)
+            echo "Invalid option $REPLY"
+            ;;
+       esac
+      done
+      ;;      
     "All Spam ISPS")
       clear
       echo -e "Enter a Number: "
